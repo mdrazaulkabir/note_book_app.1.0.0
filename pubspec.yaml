@@ -21,6 +21,10 @@ dependencies:
   http: ^1.6.0
   shared_preferences: ^2.5.4
   mime: ^1.0.4
+  flutter_bloc: ^9.1.1
+  file_picker: ^10.3.3
+  dartz: ^0.10.1
+
 
 dev_dependencies:
   flutter_test:

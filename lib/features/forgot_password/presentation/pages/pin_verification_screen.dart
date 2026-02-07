@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:note_book_app/all_screen/set_password_screen.dart';
+import 'package:note_book_app/features/forgot_password/presentation/pages/set_password_screen.dart';
 import 'package:note_book_app/api_service/all_url.dart';
 import 'package:note_book_app/api_service/network_caller.dart';
 import 'package:note_book_app/custom_method/show_my_snack_bar.dart';

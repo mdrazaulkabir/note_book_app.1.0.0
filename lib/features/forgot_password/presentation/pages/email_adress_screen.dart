@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:note_book_app/all_screen/pin_verification_screen.dart';
+import 'package:note_book_app/features/forgot_password/presentation/pages/pin_verification_screen.dart';
 import 'package:note_book_app/api_service/all_url.dart';
 import 'package:note_book_app/api_service/network_caller.dart';
 import 'package:note_book_app/custom_method/show_my_snack_bar.dart';
@@ -58,16 +58,15 @@ class _EmailAddressScreenState extends State<EmailAddressScreen> {
                   },
                 ),
                 SizedBox(height: 20),
-                // ElevatedButton(
-                //   onPressed: () {},
-                //   child: Text("Login"),
-                // ),
                 Visibility(
                   visible: emailVerifyProcess==false,
                   replacement: CMCircularProgress(),
                   child: ElevatedButton.icon(onPressed: (){
-                   // Navigator.push(context, MaterialPageRoute(builder: (context)=>PinVerificationScreen()));
-                    _onTapEmailAddress();
+                    if(_formKey.currentState!.validate()){
+                      //Navigator.pushReplacementNamed(context, PinVerificationScreen.name);
+                      recoverEmailApiCall();
+                    }
+                    // _onTapEmailAddress();
                   }, label:Icon(Icons.arrow_circle_right_outlined,size: 30,),),
                 ),
                 SizedBox(height: 50),
@@ -78,12 +77,6 @@ class _EmailAddressScreenState extends State<EmailAddressScreen> {
         ),
       ),
     );
-  }
-  void _onTapEmailAddress(){
-    if(_formKey.currentState!.validate()){
-      //Navigator.pushReplacementNamed(context, PinVerificationScreen.name);
-      recoverEmailApiCall();
-    }
   }
   Future<void>recoverEmailApiCall()async{
     emailVerifyProcess=true;
@@ -100,7 +93,6 @@ class _EmailAddressScreenState extends State<EmailAddressScreen> {
           if(mounted){
             emailTEController.clear();
           CMSnackBar(context, "$status1 $data1");
-          //await Future.delayed(Duration(seconds: 2));
           Navigator.pushNamedAndRemoveUntil(context, PinVerificationScreen.name, (route)=>false);
           }
         }
